@@ -1,6 +1,7 @@
 // Patient Dashboard
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const PatientDashboard = ({ user, onLogout }) => {
   const [stats, setStats] = useState({});
@@ -16,7 +17,6 @@ const PatientDashboard = ({ user, onLogout }) => {
     reason: ''
   });
 
-  const API_URL = 'http://localhost:5000/api';
   const token = localStorage.getItem('token');
 
   // Fetch all data when component loads
@@ -27,7 +27,7 @@ const PatientDashboard = ({ user, onLogout }) => {
   const fetchData = async () => {
     try {
       const headers = { Authorization: `Bearer ${token}` };
-      
+
       // Fetch stats, appointments, doctors, and medical records
       const [statsRes, appointmentsRes, doctorsRes, recordsRes] = await Promise.all([
         axios.get(`${API_URL}/dashboard/stats`, { headers }),

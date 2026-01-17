@@ -1,6 +1,7 @@
 // Admin Dashboard - Universal Control Version
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const AdminDashboard = ({ user, onLogout }) => {
   const [stats, setStats] = useState({});
@@ -14,7 +15,7 @@ const AdminDashboard = ({ user, onLogout }) => {
   const [editType, setEditType] = useState(''); // 'user', 'patient', 'appointment'
   const [editFormData, setEditFormData] = useState({});
 
-  const API_URL = 'http://localhost:5000/api';
+
   const token = localStorage.getItem('token');
   const headers = { Authorization: `Bearer ${token}` };
 

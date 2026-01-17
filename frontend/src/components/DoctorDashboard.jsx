@@ -1,6 +1,7 @@
 // Doctor Dashboard - Simple Version
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const DoctorDashboard = ({ user, onLogout }) => {
   const [stats, setStats] = useState({});
@@ -17,7 +18,7 @@ const DoctorDashboard = ({ user, onLogout }) => {
     notes: ''
   });
 
-  const API_URL = 'http://localhost:5000/api';
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const DoctorDashboard = ({ user, onLogout }) => {
   const fetchData = async () => {
     try {
       const headers = { Authorization: `Bearer ${token}` };
-      
+
       const [statsRes, appointmentsRes, patientsRes] = await Promise.all([
         axios.get(`${API_URL}/dashboard/stats`, { headers }),
         axios.get(`${API_URL}/appointments/today`, { headers }),
@@ -77,9 +78,9 @@ const DoctorDashboard = ({ user, onLogout }) => {
 
   const handleCompleteAppointment = async (id) => {
     try {
-      await axios.put(`${API_URL}/appointments/${id}`, 
-        { status: 'completed' }, 
-        { headers: { Authorization: `Bearer ${token}` }}
+      await axios.put(`${API_URL}/appointments/${id}`,
+        { status: 'completed' },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('Appointment completed');
       fetchData();
