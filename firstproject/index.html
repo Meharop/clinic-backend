@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: background 0.4s;
+
+        }
+
+        button {
+            box-shadow: 0 5px 0 #333;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="ColorDisplay">#ffffff</h1>
+    <button onClick="changeColor()">Change Color</button>
+    <script>
+        function changeColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+
+            }
+            document.body.style.backgroundColor = color;
+            document.getElementById("ColorDisplay").textContent = color;
+        }
+    </script>
+</body>
+
+</html>
